@@ -26,3 +26,15 @@ Trusting the HTTPS development certificate was requested. A confirmation prompt 
 
 ````
 ### Export the certificate
+Go to your Windows certificate store (c.f. https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/how-to-view-certificates-with-the-mmc-snap-in) and export the certificate in Current User> Personal > Certificates, the one with ASP.NET Core HTTPS development certificate named "development.pfx"... with your screte word ;)
+
+### Use the exported certificate in your project
+Put it on the foot of your web api root path.
+Add the following in csproj:
+
+````xml
+  <ItemGroup>
+    <EmbeddedResource Include="development.pfx" />
+  </ItemGroup>
+````
+
