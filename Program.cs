@@ -66,7 +66,7 @@ namespace HttpsKestrel.Testharness.WebAPI
                     certificatePayload = memoryStream.ToArray();
                 }
 
-                return new X509Certificate2(certificatePayload, "Xubing76?");
+                return new X509Certificate2(certificatePayload, "/*your certificate password*/");
             }
         }
     }
