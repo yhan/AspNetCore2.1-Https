@@ -35,7 +35,7 @@ namespace HttpsKestrel.Testharness.WebAPI
                 {
                     //options.ConfigureEndpoints();
 
-                    options.Listen(IPAddress.Loopback, /*44358*/5001, listenOptions =>
+                    options.Listen(IPAddress.Loopback, 5001, listenOptions =>
                     {
                         var serverCertificate = LoadCertificate();
                         listenOptions.UseHttps(serverCertificate); // <- Configures SSL
