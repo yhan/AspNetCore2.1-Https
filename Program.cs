@@ -27,8 +27,8 @@ namespace HttpsKestrel.Testharness.WebAPI
                 {
                     factory.AddConsole();
                     factory.AddDebug();
-                    factory.AddFilter("Console", level => level >= LogLevel.Information);
-                    factory.AddFilter("Debug", level => level >= LogLevel.Information);
+                    factory.AddFilter("Console", level => level >= LogLevel.Trace);
+                    factory.AddFilter("Debug", level => level >= LogLevel.Trace);
                 })
                 .UseStartup<Startup>()
                 .UseKestrel(options =>
@@ -40,6 +40,8 @@ namespace HttpsKestrel.Testharness.WebAPI
                         var serverCertificate = LoadCertificate();
                         listenOptions.UseHttps(serverCertificate); // <- Configures SSL
                     });
+
+                    options.Listen(IPAddress.Loopback, 5000);
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()

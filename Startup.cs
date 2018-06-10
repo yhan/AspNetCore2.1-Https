@@ -27,6 +27,7 @@ namespace HttpsKestrel.Testharness.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddHttpsRedirection(options => options.HttpsPort = 5001);
 
             services.Configure<MvcOptions>(options =>
             {
@@ -47,8 +48,9 @@ namespace HttpsKestrel.Testharness.WebAPI
                 app.UseHsts();
             }
 
-            app.UseRewriter(new RewriteOptions().AddRedirectToHttps(5000, 5001));
+            app.UseRewriter(new RewriteOptions().AddRedirectToHttps(statusCode: 302, sslPort: 5001));
             app.UseHttpsRedirection();
+            
             app.UseMvc();
         }
     }
